@@ -32,5 +32,32 @@ def aplicDiscount(lista):
             listaNoua.append(vanzare)
     return listaNoua
 
+def modifGenDupaTitlu(lista, titlu, genNou):
+    '''
+    modifica genul pentru un titlu dat
+    :param lista: o lista de vanzari
+    :param titlu: titlul dat
+    :return: lista cu genurile modificate pentru titlul dat
+    '''
+    listaNoua =[]
+    for vanzare in lista:
+        if getTitlu(vanzare) == titlu:
+            vanzareNoua = creeazaVanzare(
+                getId(vanzare),
+                getTitlu(vanzare),
+                getGen(vanzare),
+                getPret(vanzare),
+                getReducere(vanzare)
+            )
+            vanzareNoua[2] = genNou
+            listaNoua.append(vanzareNoua)
+        else:
+            listaNoua.append(vanzare)
+    return listaNoua
+
+
+
+
+
 
 

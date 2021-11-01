@@ -1,6 +1,6 @@
 from Domain.vanzare import toString
 from Logic.CRUD import adaugVanzare, stergVanzare, modifVanzare
-from Logic.functionalitati import aplicDiscount
+from Logic.functionalitati import aplicDiscount, modifGenDupaTitlu
 
 
 def printMenu():
@@ -8,6 +8,7 @@ def printMenu():
     print("2. Sterge vanzare")
     print("3. Modificare vanzare")
     print("4. Aplicare reducere - gold, silver sau none")
+    print("5. Modificarea genului pentru un titlu dat")
     print("a. Afisare vanzare")
     print("x. Iesire")
 
@@ -38,6 +39,12 @@ def showAll(lista):
 def uiAplicDiscount(lista):
     return aplicDiscount(lista)
 
+def uiModifGenDupaTitlu(lista):
+    titlu = input("Dati titlul: ")
+    genNou = input("Dati genul nou: ")
+    return modifGenDupaTitlu(lista, titlu, genNou)
+
+
 def runMenu(lista):
     while True:
         printMenu()
@@ -51,6 +58,8 @@ def runMenu(lista):
             lista = uiModificaVanzare(lista)
         elif optiune == "4":
             lista = uiAplicDiscount(lista)
+        elif optiune == "5":
+            lista = uiModifGenDupaTitlu(lista)
         elif optiune == "a":
             showAll(lista)
         elif optiune == "x":
