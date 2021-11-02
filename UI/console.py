@@ -13,31 +13,47 @@ def printMenu():
     print("x. Iesire")
 
 def uiAdaugaVanzare(lista):
-    id = input("Dati id-ul: ")
-    titlu = input("Dati titlul: ")
-    gen = input ("Dati genul: ")
-    pret = float(input("Dati pretul:"))
-    reducere = input("Dati reducere:")
-    return adaugVanzare(id, titlu, gen, pret, reducere, lista)
+    try:
+        id = input("Dati id-ul: ")
+        titlu = input("Dati titlul: ")
+        gen = input ("Dati genul: ")
+        pret = float(input("Dati pretul:"))
+        reducere = input("Dati reducere:")
+        return adaugVanzare(id, titlu, gen, pret, reducere, lista)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 def uiStergeVanzare(lista):
-    id = input("Dati id-ul vanzarii de sters: ")
-    return stergVanzare(id, lista)
+    try:
+        id = input("Dati id-ul vanzarii de sters: ")
+        return stergVanzare(id, lista)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 def uiModificaVanzare(lista):
-    id = input("Dati id-ul: ")
-    titlu = input("Dati titlul: ")
-    gen = input("Dati genul: ")
-    pret = float(input("Dati pretul:"))
-    reducere = input("Dati reducere:")
-    return modifVanzare(id, titlu, gen, pret, reducere, lista)
+    try:
+        id = input("Dati id-ul: ")
+        titlu = input("Dati titlul: ")
+        gen = input("Dati genul: ")
+        pret = float(input("Dati pretul:"))
+        reducere = input("Dati reducere:")
+        return modifVanzare(id, titlu, gen, pret, reducere, lista)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 def showAll(lista):
     for vanzare in lista:
         print(toString(vanzare))
 
 def uiAplicDiscount(lista):
-    return aplicDiscount(lista)
+    try:
+        return aplicDiscount(lista)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
 def uiModifGenDupaTitlu(lista):
     titlu = input("Dati titlul: ")
