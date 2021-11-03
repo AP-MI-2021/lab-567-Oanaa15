@@ -3,6 +3,7 @@ from Logic.CRUD import adaugVanzare, stergVanzare, modifVanzare
 from Logic.functionalitati import aplicDiscount, modifGenDupaTitlu
 
 
+
 def printMenu():
     print("1. Adaugare vanzare")
     print("2. Sterge vanzare")
