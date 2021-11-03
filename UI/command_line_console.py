@@ -22,6 +22,7 @@ def UiOneLine(lista):
 
 def printMeniu2():
     print("1. Adauga o vanzare/Sterge o vanzare/Arata toate vanzarile: ")
+    print("back. Schimba interfata")
     print("x. Iesire")
 
 def runMenu2(lista, ok):
