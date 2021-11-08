@@ -55,6 +55,32 @@ def modifGenDupaTitlu(lista, titlu, genNou):
             listaNoua.append(vanzare)
     return listaNoua
 
+def pretMinimGen(lista):
+    '''
+    determina pretul minim pentru fiecare gen
+    :param lista: o lista de vanzari
+    :return: fiecare gen cu pretul minim
+    '''
+    listaNoua = {}
+    for vanzare in lista:
+        pret = getPret(vanzare)
+        gen = getGen(vanzare)
+        if gen in listaNoua:
+            if pret < listaNoua[gen]:
+                listaNoua[gen] = pret
+        else:
+            listaNoua[gen] = pret
+    return listaNoua
+
+
+def ordonareListaDupaPret(lista):
+    '''
+    ordoneaza crescator vanzarile dupa pret
+    :param lista: o lista de vanzari
+    :return: lista de vanzari ordonata crescator dupa pret
+    '''
+    return sorted(lista, key=lambda vanzare: getPret(vanzare))
+
 
 
 

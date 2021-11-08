@@ -36,7 +36,7 @@ def stergVanzare(id, lista):
     :return: lista fara vanzarea cu id-ul dat
     '''
     if getById(id, lista) is None:
-        raise ValueError("Nu exista o prajitura cu id-ul dat!")
+        raise ValueError("Nu exista o vanzare cu id-ul dat!")
     return [vanzare for vanzare in lista if getId(vanzare) != id]
 
 def modifVanzare(id, titlu, gen, pret, reducere, lista):
@@ -50,7 +50,7 @@ def modifVanzare(id, titlu, gen, pret, reducere, lista):
     :return: lista cu vanzarea modificata
     '''
     if getById(id, lista) is None:
-        raise ValueError("Nu exista o prajitura cu id-ul dat!")
+        raise ValueError("Nu exista o vanzare cu id-ul dat!")
     listaN =[]
     for vanzare in lista:
         if getId(vanzare) == id:
