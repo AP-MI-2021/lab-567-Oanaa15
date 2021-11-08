@@ -1,7 +1,7 @@
 from Tests.testCRUD import testAdaug, testGetById, testStergVanzare, testModifVanzare
 from Tests.testDomeniu import testVanzare
 from Tests.testFunctionalitati import testAplicDiscount, testModifGenDupaTitlu, testPretMinimGen, \
-    testOrdonareListaDupaPret
+    testOrdonareListaDupaPret, testAfisTitluriDupaGen
 
 
 def runAllTests():
@@ -14,3 +14,4 @@ def runAllTests():
     testModifGenDupaTitlu()
     testPretMinimGen()
     testOrdonareListaDupaPret()
+    testAfisTitluriDupaGen()

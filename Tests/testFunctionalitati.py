@@ -1,6 +1,7 @@
 from Domain.vanzare import getPret, getGen, getId
 from Logic.CRUD import adaugVanzare, getById
-from Logic.functionalitati import aplicDiscount, modifGenDupaTitlu, pretMinimGen, ordonareListaDupaPret
+from Logic.functionalitati import aplicDiscount, modifGenDupaTitlu, pretMinimGen, ordonareListaDupaPret, \
+    afisTitluriDupaGen
 
 
 def testAplicDiscount():
@@ -48,3 +49,18 @@ def testOrdonareListaDupaPret():
     assert getId(lista[0]) == "2"
     assert getId(lista[1]) == "1"
     assert getId(lista[2]) == "3"
+
+def testAfisTitluriDupaGen():
+    lista = []
+    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista)
+    lista = adaugVanzare("2", "Tabloul", "mister", 10, "silver", lista)
+    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 30, "silver", lista)
+    lista = adaugVanzare("4", "Crima si pedeapsa", "clasica", 30, "gold", lista)
+
+    listaN = afisTitluriDupaGen(lista)
+
+    assert len(listaN) == 2
+    assert listaN["clasica"] == 2
+    assert listaN["mister"] == 1
+
+

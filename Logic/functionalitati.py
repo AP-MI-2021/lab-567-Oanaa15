@@ -61,16 +61,16 @@ def pretMinimGen(lista):
     :param lista: o lista de vanzari
     :return: fiecare gen cu pretul minim
     '''
-    listaNoua = {}
+    rezultat = {}
     for vanzare in lista:
         pret = getPret(vanzare)
         gen = getGen(vanzare)
-        if gen in listaNoua:
-            if pret < listaNoua[gen]:
-                listaNoua[gen] = pret
+        if gen in rezultat:
+            if pret < rezultat[gen]:
+                rezultat[gen] = pret
         else:
-            listaNoua[gen] = pret
-    return listaNoua
+            rezultat[gen] = pret
+    return rezultat
 
 
 def ordonareListaDupaPret(lista):
@@ -80,6 +80,31 @@ def ordonareListaDupaPret(lista):
     :return: lista de vanzari ordonata crescator dupa pret
     '''
     return sorted(lista, key=lambda vanzare: getPret(vanzare))
+
+def afisTitluriDupaGen(lista):
+    '''
+    afiseaza numarul de titluri distincte pentru fiecare gen
+    :param lista: o lista de vanzari
+    :return: numarul de titluri distincte pentru fiecare gen
+    '''
+    rezultat = {}
+    titluri =[]
+    for vanzare in lista:
+        gen = getGen(vanzare)
+        titlu = getTitlu(vanzare)
+        if gen in rezultat:
+            if titlu not in titluri:
+                titluri.append(titlu)
+                rezultat[gen] += 1
+        else:
+            rezultat[gen] = 1
+            titluri.append(titlu)
+    return rezultat
+
+
+
+
+
 
 
 

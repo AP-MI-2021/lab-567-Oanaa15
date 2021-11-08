@@ -4,7 +4,7 @@ from UI.console import showAll
 
 def oneLine(lista):
     while True:
-        lineCom = input('Dati comanda: ')
+        lineCom = input('Dati comenzile: ')
         lineCom = lineCom.split(';')
         for l in lineCom:
             l = l.split(',')

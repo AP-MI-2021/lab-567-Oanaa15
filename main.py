@@ -13,7 +13,7 @@ def main():
     lista = []
     lista = adaugVanzare("1", "Great Gatsby", "clasica", 55, "gold", lista)
     lista = adaugVanzare("2", "Tabloul", "mister", 37, "none", lista)
-
+    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 15, "silver", lista)
     while True:
         aleg_meniu()
         optiune = input("Alege interfata: ")
