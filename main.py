@@ -11,7 +11,7 @@ def aleg_meniu():
 def main():
     runAllTests()
     lista = []
-    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista)
+    lista = adaugVanzare("1", "Great Gatsby", "clasica", 55, "gold", lista)
     lista = adaugVanzare("2", "Tabloul", "mister", 37, "none", lista)
 
     while True:

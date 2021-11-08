@@ -1,6 +1,7 @@
 from Tests.testCRUD import testAdaug, testGetById, testStergVanzare, testModifVanzare
 from Tests.testDomeniu import testVanzare
-from Tests.testFunctionalitati import testAplicDiscount, testModifGenDupaTitlu
+from Tests.testFunctionalitati import testAplicDiscount, testModifGenDupaTitlu, testPretMinimGen, \
+    testOrdonareListaDupaPret
 
 
 def runAllTests():
@@ -11,3 +12,5 @@ def runAllTests():
     testModifVanzare()
     testAplicDiscount()
     testModifGenDupaTitlu()
+    testPretMinimGen()
+    testOrdonareListaDupaPret()

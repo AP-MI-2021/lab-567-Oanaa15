@@ -1,7 +1,6 @@
 from Domain.vanzare import toString
 from Logic.CRUD import adaugVanzare, stergVanzare, modifVanzare
-from Logic.functionalitati import aplicDiscount, modifGenDupaTitlu
-
+from Logic.functionalitati import aplicDiscount, modifGenDupaTitlu, pretMinimGen, ordonareListaDupaPret
 
 
 def printMenu():
@@ -10,6 +9,9 @@ def printMenu():
     print("3. Modificare vanzare")
     print("4. Aplicare reducere - gold, silver sau none")
     print("5. Modificarea genului pentru un titlu dat")
+    print("6. Determinarea prețului minim pentru fiecare gen")
+    print("7. Ordonarea vânzărilor crescător după preț")
+    print("8. Undo")
     print("a. Afisare vanzare")
     print("x. Iesire")
 
@@ -59,8 +61,23 @@ def uiAplicDiscount(lista):
 def uiModifGenDupaTitlu(lista):
     titlu = input("Dati titlul: ")
     genNou = input("Dati genul nou: ")
-    return modifGenDupaTitlu(lista, titlu, genNou)
+    try:
+        return modifGenDupaTitlu(lista, titlu, genNou)
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
 
+def uiPretMinimGen(lista):
+    try:
+        listaN = pretMinimGen(lista)
+        for gen in listaN:
+            print("Genul {} are pretul minim: {}".format(gen, listaN[gen]))
+    except ValueError as ve:
+        print("Eroare: {}".format(ve))
+        return lista
+
+def uiOrdonareListaDupaPret(lista):
+    return showAll(ordonareListaDupaPret(lista))
 
 def runMenu(lista):
     while True:
@@ -77,6 +94,10 @@ def runMenu(lista):
             lista = uiAplicDiscount(lista)
         elif optiune == "5":
             lista = uiModifGenDupaTitlu(lista)
+        elif optiune == "6":
+            uiPretMinimGen(lista)
+        elif optiune == "7":
+            uiOrdonareListaDupaPret(lista)
         elif optiune == "a":
             showAll(lista)
         elif optiune == "x":
