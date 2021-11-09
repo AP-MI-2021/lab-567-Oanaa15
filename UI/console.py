@@ -1,5 +1,5 @@
-from Domain.vanzare import toString
-from Logic.CRUD import adaugVanzare, stergVanzare, modifVanzare
+from Domain.vanzare import toString, getTitlu, getGen, getPret, getReducere
+from Logic.CRUD import adaugVanzare, stergVanzare, modifVanzare, getById
 from Logic.functionalitati import aplicDiscount, modifGenDupaTitlu, pretMinimGen, ordonareListaDupaPret, \
     afisTitluriDupaGen
 
@@ -18,34 +18,43 @@ def printMenu():
     print("a. Afisare vanzare")
     print("x. Iesire")
 
-def uiAdaugaVanzare(lista):
+def uiAdaugaVanzare(lista, undoList, redoList):
     try:
         id = input("Dati id-ul: ")
         titlu = input("Dati titlul: ")
         gen = input ("Dati genul: ")
         pret = float(input("Dati pretul:"))
         reducere = input("Dati reducere:")
-        return adaugVanzare(id, titlu, gen, pret, reducere, lista)
+        rezultat = adaugVanzare(id, titlu, gen, pret, reducere, lista)
+        undoList.append(lista)
+        redoList.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
 
-def uiStergeVanzare(lista):
+def uiStergeVanzare(lista, undoList, redoList):
     try:
         id = input("Dati id-ul vanzarii de sters: ")
-        return stergVanzare(id, lista)
+        rezultat = stergVanzare(id, lista)
+        undoList.append(lista)
+        redoList.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
 
-def uiModificaVanzare(lista):
+def uiModificaVanzare(lista, undoList, redoList):
     try:
         id = input("Dati id-ul: ")
         titlu = input("Dati titlul: ")
         gen = input("Dati genul: ")
         pret = float(input("Dati pretul:"))
         reducere = input("Dati reducere:")
-        return modifVanzare(id, titlu, gen, pret, reducere, lista)
+        rezultat = modifVanzare(id, titlu, gen, pret, reducere, lista)
+        undoList.append(lista)
+        redoList.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
@@ -54,18 +63,24 @@ def showAll(lista):
     for vanzare in lista:
         print(toString(vanzare))
 
-def uiAplicDiscount(lista):
+def uiAplicDiscount(lista, undoList, redoList):
     try:
-        return aplicDiscount(lista)
+        rezultat = aplicDiscount(lista)
+        undoList.append(lista)
+        redoList.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
 
-def uiModifGenDupaTitlu(lista):
+def uiModifGenDupaTitlu(lista, undoList, redoList):
     titlu = input("Dati titlul: ")
     genNou = input("Dati genul nou: ")
     try:
-        return modifGenDupaTitlu(lista, titlu, genNou)
+        rezultat = modifGenDupaTitlu(lista, titlu, genNou)
+        undoList.append(lista)
+        redoList.clear()
+        return rezultat
     except ValueError as ve:
         print("Eroare: {}".format(ve))
         return lista
@@ -79,8 +94,12 @@ def uiPretMinimGen(lista):
         print("Eroare: {}".format(ve))
         return lista
 
-def uiOrdonareListaDupaPret(lista):
-    return showAll(ordonareListaDupaPret(lista))
+def uiOrdonareListaDupaPret(lista, undoList, redoList):
+    rezultat = ordonareListaDupaPret(lista)
+    undoList.append(lista)
+    redoList.clear()
+    return rezultat
+
 
 def uiAfisTitluriDupaGen(lista):
     try:
@@ -94,27 +113,49 @@ def uiAfisTitluriDupaGen(lista):
         print("Eroare: {}".format(ve))
         return lista
 
+def functieUndo(lista, undoList, redoList):
+        redoList.append(lista)
+        lista = undoList.pop()
+        return lista
+
+def functieRedo(lista, undoList, redoList):
+        undoList.append(lista)
+        lista = redoList.pop()
+        return lista
+
 def runMenu(lista):
+    undoList = []
+    redoList = []
     while True:
         printMenu()
         optiune = input("Dati optiunea: ")
 
         if optiune == "1":
-            lista = uiAdaugaVanzare(lista)
+            lista = uiAdaugaVanzare(lista, undoList, redoList)
         elif optiune == "2":
-            lista = uiStergeVanzare(lista)
+            lista = uiStergeVanzare(lista, undoList, redoList)
         elif optiune == "3":
-            lista = uiModificaVanzare(lista)
+            lista = uiModificaVanzare(lista, undoList, redoList)
         elif optiune == "4":
-            lista = uiAplicDiscount(lista)
+            lista = uiAplicDiscount(lista, undoList, redoList)
         elif optiune == "5":
-            lista = uiModifGenDupaTitlu(lista)
+            lista = uiModifGenDupaTitlu(lista, undoList, redoList)
         elif optiune == "6":
             uiPretMinimGen(lista)
         elif optiune == "7":
-            uiOrdonareListaDupaPret(lista)
+            lista = uiOrdonareListaDupaPret(lista, undoList, redoList)
         elif optiune == "8":
             uiAfisTitluriDupaGen(lista)
+        elif optiune == "u":
+            if len(undoList) > 0:
+                lista = functieUndo(lista, undoList, redoList)
+            else:
+                print("nu se poate face undo")
+        elif optiune == "r":
+            if len(redoList) > 0:
+                lista = functieRedo(lista, undoList, redoList)
+            else:
+                print("nu se poate face redo!")
         elif optiune == "a":
             showAll(lista)
         elif optiune == "x":

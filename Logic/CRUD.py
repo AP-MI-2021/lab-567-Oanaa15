@@ -1,7 +1,7 @@
 from Domain.vanzare import creeazaVanzare, getId
 
 
-def adaugVanzare(id, titlu, gen, pret, reducere, lista):
+def adaugVanzare(id, titlu, gen, pret, reducere, lista, undoList, redoList):
     '''
     adauga o vanzare intr-o lista
     :param id: id-ul unei vanzari - string
@@ -13,7 +13,11 @@ def adaugVanzare(id, titlu, gen, pret, reducere, lista):
     '''
     if getById(id, lista) is not None:
         raise ValueError("Id-ul exista deja!")
+    if pret < 0:
+        raise ValueError("Pretul trebuie sa fie pozitiv!")
     vanzare = creeazaVanzare(id, titlu, gen, pret, reducere)
+    undoList.append(lista)
+    redoList.clear()
     return lista + [vanzare]
 
 def getById(id, lista):
@@ -28,7 +32,7 @@ def getById(id, lista):
             return vanzare
     return None
 
-def stergVanzare(id, lista):
+def stergVanzare(id, lista, undoList, redoList):
     '''
     sterge o vanzare dintr-o lista
     :param id: id-ul vanzarii - string
@@ -37,9 +41,11 @@ def stergVanzare(id, lista):
     '''
     if getById(id, lista) is None:
         raise ValueError("Nu exista o vanzare cu id-ul dat!")
+    undoList.append(lista)
+    redoList.clear()
     return [vanzare for vanzare in lista if getId(vanzare) != id]
 
-def modifVanzare(id, titlu, gen, pret, reducere, lista):
+def modifVanzare(id, titlu, gen, pret, reducere, lista, undoList, redoList):
     '''
     modifica o vanzare dintr-o lista
     :param id: id-ul unei vanzari - string
@@ -58,6 +64,8 @@ def modifVanzare(id, titlu, gen, pret, reducere, lista):
             listaN.append(vanzareNoua)
         else:
             listaN.append(vanzare)
+    undoList.append(lista)
+    redoList.clear()
     return listaN
 
 
