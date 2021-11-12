@@ -31,7 +31,7 @@ def oneLine(lista):
                 if len(l) == 2:
                     try:
                         id = l[1]
-                        lista = stergVanzare(id, lista, undoList,redoList)
+                        lista = stergVanzare(id, lista, undoList, redoList)
                     except ValueError as ve:
                         print(f'Eroare: {ve}')
                 else:
