@@ -20,8 +20,6 @@ def printMenu():
 
 def uiAdaugaVanzare(lista, undoList, redoList):
     try:
-        undoList = []
-        redoList = []
         id = input("Dati id-ul: ")
         titlu = input("Dati titlul: ")
         gen = input ("Dati genul: ")
@@ -37,8 +35,6 @@ def uiAdaugaVanzare(lista, undoList, redoList):
 
 def uiStergeVanzare(lista, undoList, redoList):
     try:
-        undoList = []
-        redoList = []
         id = input("Dati id-ul vanzarii de sters: ")
         rezultat = stergVanzare(id, lista, undoList, redoList)
         undoList.append(lista)
@@ -50,8 +46,6 @@ def uiStergeVanzare(lista, undoList, redoList):
 
 def uiModificaVanzare(lista, undoList, redoList):
     try:
-        undoList = []
-        redoList = []
         id = input("Dati id-ul: ")
         titlu = input("Dati titlul: ")
         gen = input("Dati genul: ")
