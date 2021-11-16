@@ -1,4 +1,4 @@
-from Logic.CRUD import adaugVanzare
+from Logic.CRUD import adaugVanzare2
 from Tests.allTests import runAllTests
 from UI.command_line_console import runMenu2
 from UI.console import runMenu
@@ -14,9 +14,9 @@ def main():
     lista = []
     undoList = []
     redoList = []
-    lista = adaugVanzare("1", "Great Gatsby", "clasica", 55, "gold", lista, undoList, redoList)
-    lista = adaugVanzare("2", "Tabloul", "mister", 37, "none", lista, undoList, redoList)
-    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 15, "silver", lista, undoList, redoList)
+    lista = adaugVanzare2("1", "Great Gatsby", "clasica", 55, "gold", lista, undoList, redoList)
+    lista = adaugVanzare2("2", "Tabloul", "mister", 37, "none", lista, undoList, redoList)
+    lista = adaugVanzare2("3", "Crima si pedeapsa", "clasica", 15, "silver", lista, undoList, redoList)
     while True:
         aleg_meniu()
         optiune = input("Alege interfata: ")

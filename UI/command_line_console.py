@@ -11,8 +11,6 @@ def runMenu2(lista):
         printMeniu2()
         optiune = input("Alegeti optiune: ")
         if optiune == "1":
-            undoList = []
-            redoList = []
             lineCom = input('Dati comenzile: ')
             lineCom = lineCom.split(';')
             for l in lineCom:
@@ -27,7 +25,7 @@ def runMenu2(lista):
                             gen = l[3]
                             pret = float(l[4])
                             reducere = l[5]
-                            lista = adaugVanzare(id, titlu, gen, pret, reducere, lista, undoList, redoList)
+                            lista = adaugVanzare(id, titlu, gen, pret, reducere, lista)
                         except ValueError as ve:
                             print(f'Eroare: {ve}')
                     else:
@@ -38,7 +36,7 @@ def runMenu2(lista):
                     if len(l) == 2:
                         try:
                             id = l[1]
-                            lista = stergVanzare(id, lista, undoList, redoList)
+                            lista = stergVanzare(id, lista)
                         except ValueError as ve:
                             print(f'Eroare: {ve}')
                     else:

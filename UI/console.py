@@ -1,5 +1,5 @@
-from Domain.vanzare import toString, getTitlu, getGen, getPret, getReducere
-from Logic.CRUD import adaugVanzare, stergVanzare, modifVanzare, getById
+from Domain.vanzare import toString
+from Logic.CRUD import adaugVanzare, stergVanzare, modifVanzare
 from Logic.functionalitati import aplicDiscount, modifGenDupaTitlu, pretMinimGen, ordonareListaDupaPret, \
     afisTitluriDupaGen
 
@@ -14,7 +14,7 @@ def printMenu():
     print("7. Ordonarea vânzărilor crescător după preț")
     print("8. Afișarea numărului de titluri distincte pentru fiecare gen")
     print("u. Undo")
-    print("r. redo")
+    print("r. Redo")
     print("a. Afisare vanzare")
     print("x. Iesire")
 
@@ -25,7 +25,7 @@ def uiAdaugaVanzare(lista, undoList, redoList):
         gen = input ("Dati genul: ")
         pret = float(input("Dati pretul:"))
         reducere = input("Dati reducere:")
-        rezultat = adaugVanzare(id, titlu, gen, pret, reducere, lista, undoList, redoList)
+        rezultat = adaugVanzare(id, titlu, gen, pret, reducere, lista)
         undoList.append(lista)
         redoList.clear()
         return rezultat
@@ -36,7 +36,7 @@ def uiAdaugaVanzare(lista, undoList, redoList):
 def uiStergeVanzare(lista, undoList, redoList):
     try:
         id = input("Dati id-ul vanzarii de sters: ")
-        rezultat = stergVanzare(id, lista, undoList, redoList)
+        rezultat = stergVanzare(id, lista)
         undoList.append(lista)
         redoList.clear()
         return rezultat
@@ -51,7 +51,7 @@ def uiModificaVanzare(lista, undoList, redoList):
         gen = input("Dati genul: ")
         pret = float(input("Dati pretul:"))
         reducere = input("Dati reducere:")
-        rezultat = modifVanzare(id, titlu, gen, pret, reducere, lista, undoList, redoList)
+        rezultat = modifVanzare(id, titlu, gen, pret, reducere, lista)
         undoList.append(lista)
         redoList.clear()
         return rezultat

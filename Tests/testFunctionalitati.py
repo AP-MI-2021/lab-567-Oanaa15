@@ -1,5 +1,5 @@
 from Domain.vanzare import getPret, getGen, getId
-from Logic.CRUD import adaugVanzare, getById
+from Logic.CRUD import getById, adaugVanzare
 from Logic.functionalitati import aplicDiscount, modifGenDupaTitlu, pretMinimGen, ordonareListaDupaPret, \
     afisTitluriDupaGen
 
@@ -8,8 +8,8 @@ def testAplicDiscount():
     undoList = []
     redoList = []
     lista = []
-    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista, undoList, redoList)
-    lista = adaugVanzare("2", "Tabloul", "mister", 20, "silver", lista, undoList, redoList)
+    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista)
+    lista = adaugVanzare("2", "Tabloul", "mister", 20, "silver", lista)
 
     lista = aplicDiscount(lista)
 
@@ -21,8 +21,8 @@ def testModifGenDupaTitlu():
     undoList = []
     redoList = []
     lista = []
-    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista, undoList, redoList)
-    lista = adaugVanzare("2", "Tabloul", "mister", 20, "silver", lista, undoList, redoList)
+    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista)
+    lista = adaugVanzare("2", "Tabloul", "mister", 20, "silver", lista)
 
     titlu = "Tabloul"
     genNou = "crima"
@@ -37,9 +37,9 @@ def testPretMinimGen():
     undoList = []
     redoList = []
     lista = []
-    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista, undoList, redoList)
-    lista = adaugVanzare("2", "Tabloul", "mister", 20, "silver", lista, undoList, redoList)
-    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 30, "silver", lista, undoList, redoList)
+    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista)
+    lista = adaugVanzare("2", "Tabloul", "mister", 20, "silver", lista)
+    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 30, "silver", lista)
 
     listaN = pretMinimGen(lista)
 
@@ -51,9 +51,9 @@ def testOrdonareListaDupaPret():
     redoList = []
     lista = []
 
-    lista = adaugVanzare("1", "Great Gatsby", "clasica", 20, "gold", lista, undoList, redoList)
-    lista = adaugVanzare("2", "Tabloul", "mister", 15, "silver", lista, undoList, redoList)
-    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 30, "silver", lista, undoList, redoList)
+    lista = adaugVanzare("1", "Great Gatsby", "clasica", 20, "gold", lista)
+    lista = adaugVanzare("2", "Tabloul", "mister", 15, "silver", lista)
+    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 30, "silver", lista)
 
     lista = ordonareListaDupaPret(lista)
 
@@ -66,10 +66,10 @@ def testAfisTitluriDupaGen():
     undoList = []
     redoList = []
     lista = []
-    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista, undoList, redoList)
-    lista = adaugVanzare("2", "Tabloul", "mister", 20, "silver", lista, undoList, redoList)
-    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 30, "silver", lista, undoList, redoList)
-    lista = adaugVanzare("4", "Crima si pedeapsa", "clasica", 30, "gold", lista, undoList, redoList)
+    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista)
+    lista = adaugVanzare("2", "Tabloul", "mister", 20, "silver", lista)
+    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 30, "silver", lista)
+    lista = adaugVanzare("4", "Crima si pedeapsa", "clasica", 30, "gold", lista)
 
     listaN = afisTitluriDupaGen(lista)
 

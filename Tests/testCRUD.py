@@ -1,11 +1,11 @@
 from Domain.vanzare import getId, getTitlu, getGen, getPret, getReducere
-from Logic.CRUD import adaugVanzare, getById, stergVanzare, modifVanzare
+from Logic.CRUD import adaugVanzare2, getById, stergVanzare2, modifVanzare2, adaugVanzare, stergVanzare, modifVanzare
 
 
 def testAdaug():
     undoList =[]
     redoList =[]
-    lista = adaugVanzare("1", "Harry Potter", "fictiune", 30, "silver", [], undoList, redoList)
+    lista = adaugVanzare("1", "Harry Potter", "fictiune", 30, "silver", [])
 
     assert getId(lista[0]) == "1"
     assert getTitlu(lista[0]) == "Harry Potter"
@@ -18,7 +18,7 @@ def testGetById():
     undoList = []
     redoList = []
     lista = []
-    lista = adaugVanzare("1", "Harry Potter", "fictiune", 30, "silver", lista, undoList, redoList)
+    lista = adaugVanzare("1", "Harry Potter", "fictiune", 30, "silver", lista)
 
     assert len(lista) == 1
     assert getId(getById("1", lista)) == "1"
@@ -31,10 +31,10 @@ def testStergVanzare():
     undoList = []
     redoList = []
     lista = []
-    lista = adaugVanzare("1", "Harry Potter", "fictiune", 30, "silver", lista, undoList, redoList)
-    lista = adaugVanzare("2", "Dune", "actiune", 45, "none", lista, undoList, redoList)
+    lista = adaugVanzare("1", "Harry Potter", "fictiune", 30, "silver", lista)
+    lista = adaugVanzare("2", "Dune", "actiune", 45, "none", lista)
 
-    lista = stergVanzare("1", lista, undoList, redoList)
+    lista = stergVanzare("1", lista)
 
     assert len(lista) == 1
     assert getById("1", lista) is None
@@ -44,11 +44,11 @@ def testModifVanzare():
     undoList = []
     redoList = []
     lista = []
-    lista = adaugVanzare("1", "Harry Potter", "fictiune", 30, "silver", lista, undoList, redoList)
-    lista = adaugVanzare("2", "Dune", "actiune", 45, "none", lista, undoList, redoList)
+    lista = adaugVanzare("1", "Harry Potter", "fictiune", 30, "silver", lista)
+    lista = adaugVanzare("2", "Dune", "actiune", 45, "none", lista)
 
-    lista = modifVanzare("1", "Harry Potter vol. 1", "fictiune si magie", 15, "silver", lista, undoList, redoList)
-    lista = modifVanzare("2", "Dune", "SF", 35, "none", lista, undoList, redoList)
+    lista = modifVanzare("1", "Harry Potter vol. 1", "fictiune si magie", 15, "silver", lista)
+    lista = modifVanzare("2", "Dune", "SF", 35, "none", lista)
 
     assert getId(lista[0]) == "1"
     assert getGen(lista[0]) == "fictiune si magie"

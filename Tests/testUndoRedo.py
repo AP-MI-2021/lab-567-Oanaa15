@@ -1,5 +1,5 @@
 from Domain.vanzare import getId
-from Logic.CRUD import adaugVanzare, getById
+from Logic.CRUD import adaugVanzare2, getById
 from UI.console import functieUndo, functieRedo
 
 
@@ -8,9 +8,9 @@ def testUndoRedo():
     redoList = []
     lista = []
     #adaugam 3 obiecte
-    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista, undoList, redoList)
-    lista = adaugVanzare("2", "Tabloul", "mister", 20, "silver", lista, undoList, redoList)
-    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 30, "silver", lista, undoList, redoList)
+    lista = adaugVanzare2("1", "Great Gatsby", "clasica", 15, "gold", lista, undoList, redoList)
+    lista = adaugVanzare2("2", "Tabloul", "mister", 20, "silver", lista, undoList, redoList)
+    lista = adaugVanzare2("3", "Crima si pedeapsa", "clasica", 30, "silver", lista, undoList, redoList)
 
     #undo 1
     if len(undoList) > 0:
@@ -37,9 +37,9 @@ def testUndoRedo():
     assert lista == []
 
     #adaugam alte 3 obiecte
-    lista = adaugVanzare("1", "Great Gatsby", "clasica", 15, "gold", lista, undoList, redoList)
-    lista = adaugVanzare("2", "Tabloul", "mister", 20, "silver", lista, undoList, redoList)
-    lista = adaugVanzare("3", "Crima si pedeapsa", "clasica", 30, "silver", lista, undoList, redoList)
+    lista = adaugVanzare2("1", "Great Gatsby", "clasica", 15, "gold", lista, undoList, redoList)
+    lista = adaugVanzare2("2", "Tabloul", "mister", 20, "silver", lista, undoList, redoList)
+    lista = adaugVanzare2("3", "Crima si pedeapsa", "clasica", 30, "silver", lista, undoList, redoList)
 
     #redo - nu face nimic
     if len(redoList) > 0:
@@ -84,7 +84,7 @@ def testUndoRedo():
     assert getById("2", lista) is None
 
     #adaug obiectul 4
-    lista = adaugVanzare("4", "Dune", "SF", 60, "gold", lista, undoList, redoList)
+    lista = adaugVanzare2("4", "Dune", "SF", 60, "gold", lista, undoList, redoList)
 
     #redo - nu face nimic
     if len(redoList) > 0:
